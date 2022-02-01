@@ -1,4 +1,4 @@
-const metamask = require('metamascara')
+const WalletConnect = require('@walletconnect/web3-provider')
 const h = require('virtual-dom/h')
 const treeify = require('treeify').asTree
 const ObsStore = require('obs-store')
@@ -12,12 +12,19 @@ const exampleAbi = require('./token.json')
 
 const defaultState = {
   abi: exampleAbi,
-  view: { address: '0xd26114cd6EE289AccF82350c8d8487fedB8A0C07' },
+  view: { address: '0x863DF6BFa4469f3ead0bE8f9F2AAE51c91A907b4' },
 }
 
 window.addEventListener('load', function() {
 
-  const provider = metamask.createDefaultProvider({})
+
+//  Create WalletConnect Provider
+const provider = new WalletConnectProvider({
+  infuraId: "7e792748b1ee47c39ee4593dcf72f518", // Required
+});
+
+//  Enable session (triggers QR Code modal)
+await provider.enable();
   startApp(provider)
 
 })
