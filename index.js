@@ -21,10 +21,7 @@ window.addEventListener('load', function() {
 //  Create WalletConnect Provider
 const provider = new WalletConnectProvider({
   infuraId: "7e792748b1ee47c39ee4593dcf72f518", // Required
-});
-
-//  Enable session (triggers QR Code modal)
-await provider.enable();
+  qrcode: true,
   startApp(provider)
 
 })
